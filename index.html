@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DECLARAÇÃO DE DEPENDÊNCIA FINANCEIRA - MINISTÉRIO DA JUSTIÇA</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="https://img.icons8.com/?size=100&id=rA7WFPSNOdGZ&format=png&color=000000">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        // Verificar se a biblioteca foi carregada
+        window.addEventListener('load', function() {
+            if (typeof html2pdf === 'undefined') {
+                console.error('Erro: Biblioteca html2pdf não foi carregada');
+                alert('Erro: Biblioteca PDF não foi carregada. Recarregue a página.');
+            } else {
+                console.log('Biblioteca html2pdf carregada com sucesso');
+            }   
+        });
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background: #f5f5f5;
+            padding: 20px;
+            line-height: 1.4;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 21cm;
+            max-width: 21cm;
+            background: white;
+            padding: 2.54cm 3.18cm;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            position: relative;
+            overflow: visible;
+        }
+
+        .form-content {
+            text-align: left;
+            max-width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .logo img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .header h1 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .header h2 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .header h3 {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 30px 0;
+            text-transform: uppercase;
+        }
+
+        .form-subtitle {
+            text-align: center;
+            font-size: 12px;
+            font-style: italic;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+
+        .declaration-text {
+            margin: 30px 0;
+            font-size: 12px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .signature-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .signature-line {
+            border-top: 1px solid #333;
+            margin: 20px 0;
+            padding-top: 10px;
+        }
+
+        .signature-fields {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            font-size: 12px;
+        }
+
+        .signature-fields .field {
+            flex: 1;
+            text-align: center;
+        }
+
+        .signature-fields .field input {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .signature-area {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .signature-line-manual {
+            width: 300px;
+            height: 2px;
+            background: #333;
+            margin: 10px auto;
+            display: block;
+        }
+
+        .signature-text {
+            font-size: 12px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .submit-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 26px auto;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+
+        .pdf-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px auto;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .pdf-btn:hover {
+            background: #1e7e34;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        @media print {
+            body { 
+                background: white; 
+                margin: 0;
+                padding: 0;
+                display: block;
+            }
+            .container { 
+                box-shadow: none; 
+                padding: 2.54cm 3.18cm;
+                margin: 0;
+                width: 21cm;
+                max-width: 21cm;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            .pdf-btn { 
+                display: none; 
+            }
+        }
+
+        @media screen {
+            .container {
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .container {
+                padding: 20px;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .signature-fields {
+                flex-direction:column-reverse;
+                gap: 25px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="logo.png" alt="Logo do Ministério da Justiça">
+            </div>
+            <h1>MINISTÉRIO DA JUSTIÇA E SEGURANÇA PÚBLICA</h1>
+            <h2>SECRETARIA NACIONAL DE JUSTIÇA</h2>
+            <h3>DEPARTAMENTO DE MIGRAÇÕES</h3>
+            <br>
+            <h1>MINISTÈ JISTIS AK SEKIRITE PIBLIK</h1>
+            <h2>SEKRETÈ NASYONAL JISTIS</h2>
+            <h3>DEPATMAN MIGRASYON</h3>
+        </div>
+
+        <div class="form-title">
+            DECLARAÇÃO DE DEPENDÊNCIA FINANCEIRA<br>
+            DEKLARASYON DEPANDANS FINANSYÈ
+        </div>
+
+        <div class="form-subtitle">
+            (O formulário deverá ser preenchido em letra de forma legível / Fòm nan dwe ranpli ak lèt lizib)
+        </div>
+
+        <form id="declaracaoForm">
+            <div class="form-content">
+                <div class="form-group">
+                    <label for="nome">Nome completo / Non Konplè:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nacionalidade">Nacionalidade / Nasyonalite:</label>
+                    <input type="text" id="nacionalidade" name="nacionalidade" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="documento">Documento / Dokiman CPF/RNM/RG:</label>
+                    <input type="text" id="documento" name="documento" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="endereco">Endereço residencial / Kote ou rete:</label>
+                    <input type="text" id="endereco" name="endereco" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="familiar1">Familiar chamado / Fanmi kap antre a:</label>
+                        <input type="text" id="familiar1" name="familiar1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentesco1">Parentesco / Paran:</label>
+                        <input type="text" id="parentesco1" name="parentesco1" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="passaporte1">Passaporte / Paspò:</label>
+                    <input type="text" id="passaporte1" name="passaporte1" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="familiar2">Familiar chamado / Fanmi kap antre a:</label>
+                        <input type="text" id="familiar2" name="familiar2">
+                    </div>
+                    <div class="form-group">
+                        <label for="parentesco2">Parentesco / Paran:</label>
+                        <input type="text" id="parentesco2" name="parentesco2">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="passaporte2">Passaporte / Paspò:</label>
+                    <input type="text" id="passaporte2" name="passaporte2">
+                </div>
+
+                <div class="declaration-text">
+                    <strong>DECLARO, SOB AS PENAS DA LEI,</strong> que os familiares acima relacionados vivem sob minha dependência financeira/econômica, visto não perceber rendimento do trabalho ou de qualquer outra fonte.<br><br>
+                    Tenho condições financeiras suficientes para fazer face a responsabilidade que ora assumo, sendo que as informações aqui emitidas para a presente finalidade são verídicas, estando ciente dos seus efeitos, especialmente criminais no caso de declarações e/ou documentos falsos.<br><br>
+                    Declaro ainda ter pleno conhecimento dos termos deste documento, que ora vai por mim assinado.<br><br>
+                    <strong>MWEN DEKLARE, ANBA SANKSYON LWA,</strong> manm fanmi ki endike anwo a ap viv depan de mwen ekonomikman mwen, paske pa resevwa revni nan travay oswa nan okenn lòt sous.<br><br>
+                    Mwen gen ase kondisyon finansye pou m fè fas ak responsablite mwen pran. epi enfòmasyon yo bay la a pou objektif sa a se verite, mwen konnen efè yo, espesyalman kriminèl nan ka fo deklarasyon ak / oswa dokiman. Mwen deklare tou ke mwen konplètman okouran de kondisyon ki nan dokiman as ke mwen siyen an.<br><br>
+                    É considerado crime, com pena de reclusão e multa, omitir, em documento público ou particular, declaração que dele devia constar, ou nele inserir ou fazer inserir declaração falsa ou diversa da que devia ser escrita, com o fim de prejudicar direito, criar obrigação ou alterar a verdade sobre fato juridicamente relevante (Art. 299, do Código Penal).<br><br>
+                    <strong>Li konsidere kòm krim, avèk Pèn prizon e amann,</strong> pou chanjman enfomasyon sou yon reyalite legalman enpòtan, nan yon dokiman piblik ou prive, nan objektif pou devye LALWA (Atik 299 nan Kòd Penal la).
+                </div>
+
+                <div class="signature-section">
+                    <div class="form-group">
+                        <div class="field">
+                            <input type="text" id="cidade" name="cidade" placeholder="Cidade/UF (Vil/Depatman)" required>
+                        </div>
+                        <div class="field">
+                            <input type="text" id="dia" name="dia" placeholder="Dia" maxlength="2" required>
+                        </div>
+                        <div class="field">
+                            <input type="text" id="mes" name="mes" placeholder="Mês" maxlength="2" required>
+                        </div>
+                        <div class="field">
+                            <input type="text" id="ano" name="ano" placeholder="Ano" maxlength="4" required>
+                        </div>
+                    </div>
+                    
+                    <div class="signature-area">
+                        <div class="signature-text">Assinatura do Declarante (Siyati Deklaran an)</div>
+                        <div class="signature-line-manual"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="pdf-btn" onclick="saveAsPDF()">Salvar como PDF</button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+            Declaração gerada com sucesso! Você pode imprimir ou salvar como PDF.
+        </div>
+    </div>
+
+    <script>
+      
+        document.getElementById('dia').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value > 31) value = 31;
+            e.target.value = value;
+        });
+
+        document.getElementById('mes').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value > 12) value = 12;
+            e.target.value = value;
+        });
+
+        document.getElementById('ano').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 4) value = value.substring(0, 4);
+            e.target.value = value;
+        });
+
+        document.getElementById('declaracaoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const requiredFields = document.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#dc3545';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#ccc';
+                }
+            });
+            
+            if (!isValid) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+            
+            document.getElementById('successMessage').style.display = 'block';
+            
+            if (confirm('Deseja imprimir a declaração?')) {
+                window.print();
+            }
+            
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
+
+        function saveAsPDF() {
+            const pdfBtn = document.querySelector('.pdf-btn');
+            pdfBtn.style.display = 'none'; // Esconde o botão
+
+            const requiredFields = document.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#dc3545';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#ccc';
+                }
+            });
+            
+            if (!isValid) {
+                alert('Por favor, preencha todos os campos obrigatórios antes de salvar como PDF.');
+                pdfBtn.style.display = 'block'; // Mostra o botão novamente
+                return;
+            }
+
+            try {
+
+                if (typeof html2pdf !== 'undefined') {
+                    const element = document.querySelector('.container');
+                    
+                    const originalMargin = element.style.margin;
+                    element.style.margin = '26px';
+                    
+                    const opt = {
+                        margin: 0,
+                        filename: 'declaracao_dependencia_financeira.pdf',
+                        image: { type: 'jpeg', quality: 0.98 },
+                        html2canvas: { 
+                            scale: 4,
+                            useCORS: true,
+                            letterRendering: true,
+                            backgroundColor: '#ffffff',
+                            scrollX: 0,
+                            scrollY: 0
+                        },
+                        jsPDF: { 
+                            unit: 'cm', 
+                            format: 'a4', 
+                            orientation: 'portrait' 
+                        }
+                    };
+
+                    html2pdf().set(opt).from(element).save().then(() => {
+                        pdfBtn.style.display = 'block'; // Mostra de novo após salvar
+                        // Restaurar a margem original
+                        element.style.margin = originalMargin;
+                        
+                        document.getElementById('successMessage').style.display = 'block';
+                        setTimeout(() => {
+                            document.getElementById('successMessage').style.display = 'none';
+                        }, 5000);
+                    }).catch(err => {
+                        pdfBtn.style.display = 'block'; // Mostra de novo em caso de erro
+                        console.error('Erro com html2pdf:', err);
+                        // Restaurar a margem original
+                        element.style.margin = originalMargin;
+                        // Fallback para impressão
+                        alert('Erro ao gerar PDF. Usando impressão como alternativa...');
+                        window.print();
+                    });
+                } else {
+                    // Fallback para impressão se html2pdf não estiver disponível
+                    alert('Gerando PDF via impressão...');
+                    window.print();
+                }
+            } catch (error) {
+                console.error('Erro na função saveAsPDF:', error);
+                // Fallback para impressão
+                alert('Erro ao gerar PDF. Usando impressão como alternativa...');
+                window.print();
+            }
+        }
+    </script>
+</body>
+</html>
